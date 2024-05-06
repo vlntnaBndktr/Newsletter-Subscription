@@ -37,7 +37,3 @@ This project implements a newsletter subscription service using Node.js and Expr
 ## Authors
 
 - [Valentina Benedikter](https://github.com/vlntnaBndktr) - Initial work
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
