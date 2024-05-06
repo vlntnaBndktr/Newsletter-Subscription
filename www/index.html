@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Newsletter</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="envelope" style="font-size: 100px">&#9993;</div>
+      <h2>Anmeldung zum Newsletter</h2>
+      <form>
+        <fieldset>
+          <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Optional" />
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              required
+            />
+            <span class="info">This is a required field.</span>
+          </div>
+          <div>
+            <label for="check">
+              <input type="checkbox" id="checkbox" required checked />
+              I&#x27;ve read the terms and conditions
+            </label>
+          </div>
+          <button type="button">Submit</button>
+        </fieldset>
+      </form>
+      <div id="info"></div>
+    </div>
+    <script>
+      document.querySelector('button').addEventListener('click', () => {
+        //Feld für Meldungen ansprechen
+        const info = document.getElementById('info');
+        //Formular ansprechen
+        const form = document.querySelector('form');
+        //Icon ansprechen
+        const envelope = document.getElementById('envelope');
+
+        // values aus den Input Feldern holen
+        const checkbox = document.getElementById('checkbox').checked;
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+
+        // data-object machen
+        const dataInput = {
+          checkbox: checkbox,
+          username: username,
+          email: email,
+        };
+
+        // mit Axios an den Server senden
+        axios({
+          method: 'post',
+          url: '/',
+          data: dataInput,
+        })
+          .then((response) => {
+            envelope.innerHTML = '&#128389;';
+            form.style.display = 'none';
+            info.innerHTML = response.data;
+          })
+          .catch((error) => {
+            info.innerHTML = error.response.data;
+            console.log(error);
+          });
+        console.log('Button geklickt: ', dataInput);
+      });
+    </script>
+  </body>
+</html>

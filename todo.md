@@ -1,0 +1,3 @@
+- evtl Status des Benutzers aktualisieren oder irgendwie für Newsletter freigeben
+- evtl abmeldung vom Newsletter
+- als Singlepage HP
